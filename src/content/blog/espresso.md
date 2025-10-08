@@ -2,7 +2,7 @@
 title: "El arte de preparar un buen espresso"
 date: "2025-10-03"
 description: "Descubre los secretos para lograr un espresso perfecto, desde el molido hasta la extracción."
-image: "src/assets/menu/espresso.webp"
+image: "../assets/menu/espresso.webp"
 ---
 
 El espresso es la base de muchas bebidas de café. Para prepararlo bien, debes cuidar el molido, la presión y el tiempo de extracción.

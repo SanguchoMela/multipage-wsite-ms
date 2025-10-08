@@ -2,7 +2,7 @@
 title: "Beneficios del té verde en tu día a día"
 date: "2025-09-20"
 description: "El té verde no solo es delicioso, sino que también aporta antioxidantes y energía natural."
-image: "src/assets/menu/te-verde.webp"
+image: "../assets/menu/te-verde.webp"
 ---
 
 El té verde es rico en antioxidantes que ayudan a reducir el estrés y mejorar la concentración.
