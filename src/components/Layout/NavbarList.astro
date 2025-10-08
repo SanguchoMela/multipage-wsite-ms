@@ -1,0 +1,62 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface NavbarItem {
+  ref: string;
+  name: string;
+  icon?: string;
+}
+
+interface Props {
+  items: NavbarItem[];
+  variant?: "default" | "mobile";
+}
+
+const { items, variant = "default" } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const isSocials = items.every((item) => item.icon);
+---
+
+<ul
+  class={`flex ${
+    variant === "mobile"
+      ? isSocials
+        ? "flex-row justify-evenly py-3"
+        : "flex-col text-center"
+      : "space-x-6"
+  }`}
+>
+  {
+    items.map((item) => (
+      <li>
+        <a
+          href={item.ref}
+          class={`nav-item px-4 py-2 font-semibold  transition-colors 
+              ${
+                currentPath === item.ref
+                  ? "text-slate-700"
+                  : "text-slate-500 hover:text-slate-700"
+              }
+              ${
+                variant === "mobile"
+                  ? "block rounded-lg hover:bg-slate-200"
+                  : ""
+              }`}
+        >
+          {item.icon ? (
+            <>
+              <span class="sr-only">{item.name}</span>
+              <Icon
+                name={item.icon}
+                class="text-xl text-slate-500 hover:text-slate-700"
+              />
+            </>
+          ) : (
+            item.name
+          )}
+        </a>
+      </li>
+    ))
+  }
+</ul>
