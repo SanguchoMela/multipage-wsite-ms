@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import menuCafe from "../assets/hero/menu-cafe.jpg";
+import granosCafe from "../assets/hero/granos-cafe.jpg";
+import blogCafe from "../assets/hero/blog-cafe.jpg";
+import ubiCafe from "../assets/hero/ubi-cafe.jpg";
+
+const cardsNav = [
+  {
+    name: "Café Aroma",
+    href: "/about",
+    description: "El corazón de Café Aroma.",
+    img: granosCafe,
+  },
+  {
+    name: "Viaje de Sabores",
+    href: "/menu",
+    description: "Delicias para disfrutar.",
+    img: menuCafe,
+  },
+  {
+    name: "Notas de Café",
+    href: "/blog",
+    description: "Café, cultura y comunidad.",
+    img: blogCafe,
+  },
+  {
+    name: "¡Hablemos!",
+    href: "/contact",
+    description: "Encuéntranos y visítanos.",
+    img: ubiCafe,
+  },
+];
+---
+
+<section
+  class="relative h-screen bg-cover bg-center bg-[url('/cafe-back.png')] flex items-center justify-center w-full"
+>
+  <div class="bg-black/50 absolute inset-0"></div>
+  <div class="text-center space-y-8 text-white relative">
+    <h1>Café Aroma</h1>
+    <h3>"El mejor café artesanal directo a tu mesa"</h3>
+    <p>
+      En Café Aroma seleccionamos granos de origen ecuatoriano para preparar
+      bebidas únicas.
+    </p>
+    <div class="mt-12">
+      <a
+        href="/menu"
+        class="px-4 py-2 md:px-6 md:py-3 text-base md:text-lg bg-amber-700 rounded-lg hover:bg-amber-800 transition"
+        >Ver menú</a
+      >
+    </div>
+  </div>
+</section>
+
+<section id="info" class="py-16 text-gray-900 bg-amber-50">
+  <div class="text-center space-y-8 max-w-[80%] mx-auto">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eligendi,
+      vitae modi suscipit quos minima a debitis. Architecto, praesentium. Facere
+      fuga, repellat maiores quo officia vel aut iure architecto laudantium?
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+      {
+        cardsNav.map((card) => (
+          <div class="w-48 p-2 flex flex-col justify-evenly bg-white shadow rounded-lg transition">
+            <div class="overflow-hidden h-28 flex justify-center items-center rounded-t-lg">
+              <Image src={card.img} alt={"Café Aroma"} />
+            </div>
+            <a
+              href={card.href}
+              class="my-1 flex justify-end items-center space-x-1.5 hover:translate-x-1 duration-500"
+            >
+              <h4 class="font-semibold italic">{card.name}</h4>
+              <Icon name="ui/chevron-right" class="text-lg" />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

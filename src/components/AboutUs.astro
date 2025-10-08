@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import fincaCafe from "../assets/about/finca-cafe.avif";
+import maquinaCafe from "../assets/about/maquina-cafe.jpg";
+import teamCafe from "../assets/about/team-cafe.webp";
+import tostarCafe from "../assets/about/tostar-cafe.jpg";
+import cafeteria from "../assets/about/cafeteria.webp";
+import managerCafe from "../assets/about/manager-cafe.avif";
+
+const galleryImages = [
+  fincaCafe,
+  maquinaCafe,
+  teamCafe,
+  tostarCafe,
+  cafeteria,
+  managerCafe,
+];
+---
+
+<section class="mt-12">
+  <div class="space-y-4">
+    <h1>Café Aroma</h1>
+    <h3>"Pasión por el café, tradición y sabor en cada taza."</h3>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit labore
+      cupiditate corporis nemo, amet maxime eaque nostrum? Eos ipsum alias culpa
+      laudantium repudiandae itaque, ipsa repellat beatae accusantium modi?
+      Voluptatum! <br />
+      <br /> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse hic quis
+      maiores, nemo, nam rem eligendi est fugit, sit inventore deserunt consectetur
+      perspiciatis laudantium ipsum perferendis vero amet nulla. Quod?
+    </p>
+
+    <ul class="space-y-3">
+      <li>🌱 <b>Sostenibilidad:</b> procesos amigables con la naturaleza.</li>
+      <li>☕ <b>Calidad artesanal:</b> cada taza preparada con dedicación.</li>
+      <li>🤝 <b>Cercanía:</b> hacemos sentir en casa a cada cliente.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="bg-amber-50 space-y-4">
+  <h2>Galería</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- {
+      galleryImages.map((src, index) => (
+        <Image
+          src={src}
+          alt={`Galería ${index + 1}`}
+          class="w-full h-60 object-cover rounded-lg hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+      ))
+    } -->
+    {
+      galleryImages.map((src, index) => (
+        <div class={`${index === 1 ? "md:col-span-2 md:row-span-2" : ""}`}>
+          <Image
+            src={src}
+            loading={"lazy"}
+            alt={`Galería ${index + 1}`}
+            class="w-full h-full object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>

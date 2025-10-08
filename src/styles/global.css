@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+body {
+  @apply text-slate-800;
+}
+
+section {
+  @apply p-6 md:p-12 lg:p-16;
+}
+
+h1 {
+  @apply text-2xl md:text-4xl font-bold;
+}
+
+h2 {
+  @apply text-xl md:text-3xl font-semibold;
+}
+
+h3 {
+  @apply text-base md:text-lg italic;
+}

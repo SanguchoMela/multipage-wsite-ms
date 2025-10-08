@@ -1,0 +1,157 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+type BlogPost = CollectionEntry<"blog">;
+const blogPosts: BlogPost[] = await getCollection("blog");
+
+const initialMainPost = blogPosts[0];
+---
+
+<section class="mt-12">
+  <div class="space-y-4">
+    <h1>Notas de Café</h1>
+    <h3>
+      "Explora el mundo del café, recetas, noticias y más en nuestro blog."
+    </h3>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione
+      voluptate temporibus voluptatibus dicta quidem, dignissimos totam eaque
+      excepturi corrupti? Officiis, ipsam. Sequi consequuntur unde nihil aliquam
+      placeat quos suscipit numquam.
+    </p>
+  </div>
+</section>
+
+<section class="bg-amber-50 grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <article
+    id="main-post"
+    class="lg:col-span-2 bg-white rounded-lg shadow-md overflow-hidden"
+  >
+    <div>
+      {
+        initialMainPost.data.image && (
+          <img
+            src={initialMainPost.data.image}
+            alt={initialMainPost.data.title}
+            class="w-full h-72 object-cover"
+          />
+        )
+      }
+      <div class="p-6 space-y-2">
+        <h2 class="text-2xl font-bold" id="main-post-title">
+          {initialMainPost.data.title}
+        </h2>
+        <time class="text-sm text-gray-500 block" id="main-post-date">
+          {new Date(initialMainPost.data.date).toLocaleDateString()}
+        </time>
+        <p class="text-gray-700" id="main-post-desc">
+          {initialMainPost.data.description}
+        </p>
+        <p id="main-post-content" class="leading-relaxed">
+          {initialMainPost.body}
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <aside class="space-y-6">
+    {
+      blogPosts.map((post) => (
+        <div
+          class="bg-white lg:max-w-full md:max-w-[60%] sm:max-w-[50%] mx-auto shadow-md rounded-lg hover:shadow-lg transition cursor-pointer post-item"
+          data-title={post.data.title}
+          data-date={post.data.date.toString()}
+          data-desc={post.data.description}
+          data-img={post.data.image}
+          data-body={post.body}
+        >
+          <div class="grid grid-cols-1 md:grid-cols-3 md:gap-2">
+            <div>
+              {post.data.image && (
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-32 md:h-36 lg:h-24 object-cover md:rounded-l-lg rounded-t-lg md:rounded-t-none"
+                />
+              )}
+            </div>
+            <div class="flex flex-col col-span-2 p-2 justify-evenly">
+              <h4 class="font-medium text-base">
+                {post.data.title}
+              </h4>
+              <time class="text-sm text-gray-500">
+                {new Date(post.data.date).toLocaleDateString()}
+              </time>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </aside>
+</section>
+
+<script>
+  const mainTitle = document.getElementById("main-post-title");
+  const mainDate = document.getElementById("main-post-date");
+  const mainDesc = document.getElementById("main-post-desc");
+  const mainContent = document.getElementById("main-post-content");
+  const mainPostImage =
+    document.querySelector<HTMLImageElement>("#main-post img");
+
+  if (mainTitle && mainDate && mainDesc && mainContent && mainPostImage) {
+    document.querySelectorAll<HTMLElement>(".post-item").forEach((item) => {
+      item.addEventListener("click", () => {
+        const title = item.dataset.title ?? "";
+        const date = new Date(item.dataset.date ?? "").toLocaleDateString();
+        const desc = item.dataset.desc ?? "";
+        const bodyHTML = item.dataset.body ?? "";
+        const img = item.dataset.img ?? "";
+
+        mainContent.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-500"
+        );
+        mainTitle.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-500"
+        );
+        mainDesc.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-500"
+        );
+        mainDate.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-500"
+        );
+        mainPostImage.classList.add(
+          "opacity-0",
+          "transition-opacity",
+          "duration-500"
+        );
+
+        setTimeout(() => {
+          mainTitle.textContent = title;
+          mainDate.textContent = date;
+          mainDesc.textContent = desc;
+          mainContent.innerHTML = bodyHTML;
+
+          if (img) {
+            mainPostImage.src = img;
+            mainPostImage.alt = title;
+            mainPostImage.classList.remove("hidden");
+          } else {
+            mainPostImage.classList.add("hidden");
+          }
+          mainContent.classList.remove("opacity-0");
+          mainTitle.classList.remove("opacity-0");
+          mainDesc.classList.remove("opacity-0");
+          mainDate.classList.remove("opacity-0");
+          mainPostImage.classList.remove("opacity-0");
+        }, 500);
+      });
+    });
+  }
+</script>

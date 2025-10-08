@@ -1,0 +1,69 @@
+---
+import AstroLogo from "../../assets/astro.svg";
+import { socials } from "../../data/socials";
+import { navbarItems } from "../../data/navbarItems";
+import { Icon } from "astro-icon/components";
+---
+
+<footer class="bg-amber-900/80 text-slate-300">
+  <div class="mx-auto max-w-5xl px-4 py-6 md:py-10 lg:px-8">
+    <div class="flex space-x-3 items-center justify-center text-white">
+      <Icon name="logo/coffe" class="text-3xl" />
+      <Icon name="logo/abc" class="text-6xl" />
+    </div>
+
+    <p
+      class="mx-auto
+      mt-4
+      max-w-md
+      text-center
+      leading-relaxed"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam facere ad
+      nemo rem, cumque obcaecati repudiandae. Similique vel ratione tempora, ex
+      porro provident vitae delectus, facilis reiciendis sunt sed quo!
+    </p>
+    <ul
+      class="my-6 md:my-10 text-slate-100 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-20"
+    >
+      {
+        navbarItems.map((item) => (
+          <li class="inline-block">
+            <a href={item.ref} class="hover:text-slate-300 transition-colors">
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul class="text-slate-100 flex justify-center gap-6 md:gap-12">
+      {
+        socials.map((item) => (
+          <li class="inline-block mr-4">
+            <a
+              href={item.ref}
+              aria-label={item.name}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon
+                name={item.icon}
+                class="text-xl text-amber-900 hover:text-slate-300 transition-colors duration-300"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="text-center">
+    <hr />
+    <h4 class="text-sm lg:text-base py-3 md:py-4">
+      &copy; {new Date().getFullYear()}
+      <span
+        class="font-extrabold text-amber-900 hover:text-slate-300 transition-colors duration-300"
+        >ms</span
+      >. Todos los derechos reservados.
+    </h4>
+  </div>
+</footer>
