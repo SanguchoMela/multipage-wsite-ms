@@ -32,7 +32,7 @@ const initialMainPost = blogPosts[0];
           <img
             src={initialMainPost.data.image}
             alt={initialMainPost.data.title}
-            class="w-full h-72 object-cover"
+            class="w-full h-56 md:h-72 object-cover"
           />
         )
       }
@@ -46,9 +46,11 @@ const initialMainPost = blogPosts[0];
         <p class="text-gray-700" id="main-post-desc">
           {initialMainPost.data.description}
         </p>
-        <p id="main-post-content" class="leading-relaxed">
-          {initialMainPost.body}
-        </p>
+        <div class="max-h-[60vh] overflow-y-auto">
+          <p id="main-post-content" class="leading-relaxed">
+            {initialMainPost.body}
+          </p>
+        </div>
       </div>
     </div>
   </article>
