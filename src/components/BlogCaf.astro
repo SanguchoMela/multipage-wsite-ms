@@ -29,24 +29,30 @@ const initialMainPost = blogPosts[0];
     <div>
       {
         initialMainPost.data.image && (
-          <img
-            src={initialMainPost.data.image}
-            alt={initialMainPost.data.title}
-            class="w-full h-56 md:h-72 object-cover"
-          />
+          <div class="relative w-full max-h-[30vh] md:max-h-[45vh] overflow-hidden flex justify-center">
+            <img
+              src={initialMainPost.data.image}
+              alt={initialMainPost.data.title}
+              width="800"
+              height="450"
+              class="w-full h-auuto object-cover"
+              loading="lazy"
+            />
+          </div>
         )
       }
       <div class="p-6 space-y-2">
         <h2 class="text-2xl font-bold" id="main-post-title">
           {initialMainPost.data.title}
         </h2>
-        <time class="text-sm text-gray-500 block" id="main-post-date">
+        <time class="text-sm text-slate-500 block" id="main-post-date">
           {new Date(initialMainPost.data.date).toLocaleDateString()}
         </time>
-        <p class="text-gray-700" id="main-post-desc">
+        <p class="text-slate-700 text-sm" id="main-post-desc">
           {initialMainPost.data.description}
         </p>
-        <div class="max-h-[60vh] overflow-y-auto">
+        <hr class="text-slate-300" />
+        <div class="max-h-[50vh] overflow-y-auto">
           <p id="main-post-content" class="leading-relaxed">
             {initialMainPost.body}
           </p>
@@ -69,18 +75,21 @@ const initialMainPost = blogPosts[0];
           <div class="grid grid-cols-1 md:grid-cols-3 md:gap-2">
             <div>
               {post.data.image && (
-                <img
-                  src={post.data.image}
-                  alt={post.data.title}
-                  class="w-full h-32 md:h-36 lg:h-24 object-cover md:rounded-l-lg rounded-t-lg md:rounded-t-none"
-                />
+                <div class="relative w-full aspect-[4/3] overflow-hidden">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    width="300" 
+                    height="225"
+                    class="w-full h-full object-cover md:rounded-l-lg rounded-t-lg md:rounded-t-none"
+                    loading="lazy"
+                  />
+                </div>
               )}
             </div>
             <div class="flex flex-col col-span-2 p-2 justify-evenly">
-              <h4 class="font-medium text-base">
-                {post.data.title}
-              </h4>
-              <time class="text-sm text-gray-500">
+              <h4 class="font-medium text-base">{post.data.title}</h4>
+              <time class="text-sm text-slate-500">
                 {new Date(post.data.date).toLocaleDateString()}
               </time>
             </div>
