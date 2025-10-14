@@ -1,0 +1,97 @@
+<form
+  id="contact-form"
+  title="Contact Us"
+  class="bg-white rounded-lg shadow p-4 md:p-6 space-y-2 md:space-y-3 min-w-full lg:min-w-[80%]"
+>
+  <h3>Envíanos un mensaje</h3>
+  <div>
+    <label for="name" class="block text-sm font-medium text-amber-900"
+      >Nombre</label
+    >
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Tu nombre"
+      class="input-field"
+    />
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4">
+    <div>
+      <label for="email" class="block text-sm font-medium text-amber-900"
+        >Correo Electrónico</label
+      >
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="tu@email.com"
+        class="input-field"
+      />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium text-amber-900"
+        >Número de Teléfono</label
+      >
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="+123 4567890"
+        class="input-field"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-amber-900"
+      >Mensaje</label
+    >
+    <textarea
+      id="message"
+      name="message"
+      rows="4"
+      placeholder="Escribe tu mensaje..."
+      class="input-field"></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition"
+  >
+    Enviar
+  </button>
+
+  <p id="form-response" class="mt-2 text-sm text-green-700 hidden"></p>
+</form>
+
+<script type="module">
+  const form = document.getElementById("contact-form");
+  const responseEl = document.getElementById("form-response");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const body = new URLSearchParams();
+    for (const [key, value] of data.entries()) {
+      body.append(key, value.toString());
+    }
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      body: data,
+    });
+
+    if (res.ok) {
+      responseEl.textContent = "¡Mensaje enviado con éxito!";
+      responseEl.classList.remove("hidden");
+      form.reset();
+    } else {
+      responseEl.textContent = "Ocurrió un error al enviar el mensaje.";
+      responseEl.classList.remove("hidden");
+      responseEl.classList.add("text-red-700");
+    }
+  });
+</script>

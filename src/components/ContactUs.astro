@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { contactData } from "../data/contactData";
 import { socials } from "../data/socials";
+import ContactForm from "./ContactForm.astro";
 ---
 
 <section class="mt-12">
@@ -53,70 +54,6 @@ import { socials } from "../data/socials";
         }
       </ul>
     </div>
-
-    <form
-      class="bg-white rounded-lg shadow p-4 md:p-6 space-y-2 md:space-y-3 min-w-full lg:min-w-[80%]"
-    >
-      <h3>Envíanos un mensaje</h3>
-      <div>
-        <label for="name" class="block text-sm font-medium text-amber-900"
-          >Nombre</label
-        >
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Tu nombre"
-          class="input-field"
-        />
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-4">
-        <div>
-          <label for="email" class="block text-sm font-medium text-amber-900"
-            >Correo Electrónico</label
-          >
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="tu@email.com"
-            class="input-field"
-          />
-        </div>
-        <div>
-          <label for="email" class="block text-sm font-medium text-amber-900"
-            >Número de Teléfono</label
-          >
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="+123 4567890"
-            class="input-field"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label for="message" class="block text-sm font-medium text-amber-900"
-          >Mensaje</label
-        >
-        <textarea
-          id="message"
-          name="message"
-          rows="4"
-          placeholder="Escribe tu mensaje..."
-          class="input-field"
-        ></textarea>
-      </div>
-
-      <button
-        type="submit"
-        class="w-full bg-amber-600 text-white font-semibold py-3 rounded-lg hover:bg-amber-700 transition"
-      >
-        Enviar
-      </button>
-    </form>
+    <ContactForm />
   </div>
 </section>
