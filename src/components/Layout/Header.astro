@@ -54,6 +54,7 @@ import NavbarList from "./NavbarList.astro";
   const header = document.querySelector("header");
   const menuIcon = document.getElementById("menu-icon");
   const closeIcon = document.getElementById("close-menu");
+  const currentPath = window.location.pathname;
 
   function closeMenu() {
     toggle.checked = false;
@@ -77,6 +78,12 @@ import NavbarList from "./NavbarList.astro";
   overlay.addEventListener("click", closeMenu);
 
   navItems.forEach((item) => item.addEventListener("click", closeMenu));
+
+  navItems.forEach((item) => {
+    if (item.getAttribute("href") === currentPath) {
+      item.classList.add("active");
+    }
+  });
 
   // Add shadow to header on scroll
   let lastScrollY = 0;
