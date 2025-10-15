@@ -7,6 +7,8 @@ import icon from 'astro-icon';
 
 import vercel from '@astrojs/vercel';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -14,5 +16,5 @@ export default defineConfig({
   },
 
   integrations: [icon()],
-  adapter: vercel()
+  adapter: netlify()
 });
