@@ -36,7 +36,6 @@ const isSocials = items.every((item) => item.icon);
                   ? "block rounded-lg hover:bg-slate-200"
                   : ""
               }`}
-          data-ref={item.ref}
         >
           {item.icon ? (
             <>
@@ -54,9 +53,3 @@ const isSocials = items.every((item) => item.icon);
     ))
   }
 </ul>
-
-<style>
-  .active {
-    color: #374151; /* slate-700 */
-  }
-</style>

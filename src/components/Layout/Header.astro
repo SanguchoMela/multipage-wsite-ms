@@ -79,14 +79,15 @@ import NavbarList from "./NavbarList.astro";
 
   navItems.forEach((item) => item.addEventListener("click", closeMenu));
 
-  navItems.forEach((item) => {
-    const navItem = item as HTMLElement;
-    if (
-      navItem.dataset.ref === currentPath ||
-      navItem.getAttribute("href") === currentPath
-    ) {
-      navItem.classList.add("active");
-    }
+  document.addEventListener("DOMContentLoaded", () => {
+    navItems.forEach((item) => {
+      const itemUrl = item.getAttribute("href");
+      if (itemUrl === currentPath) {
+        item.classList.add("text-slate-700");
+      } else {
+        item.classList.remove("text-slate-700");
+      }
+    });
   });
 
   // Add shadow to header on scroll
